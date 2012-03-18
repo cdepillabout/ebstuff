@@ -577,49 +577,6 @@ xfgets(str, size, fp)
 }
 
 /* ================================================================== */
-
-char*
-jis_to_euc(euc, jis, len)
-     char	*euc;
-     const char *jis;
-     int	len;
-{
-    const char	*jis_end;
-    char	*q;
-    jis_end = jis + len;
-    /* Remove white space at tail of string */
-    while (jis_end >= jis + 2 &&
-	((jis_end[-1] == '\0' && jis_end[-2] == '\0') ||
-	 (jis_end[-1] == 0x21 && jis_end[-2] == 0x21)))
-	jis_end -= 2;
-    q = euc;
-    while (jis < jis_end)
-	*q++ = (*jis++ | 0x80);
-    *q = '\0';
-    return (char *)euc;
-}
-
-char*
-euc_to_jis(jis, euc, len)
-     char	*jis;
-     const char *euc;
-     int	len;
-{
-    const char	*euc_end;
-    char 	*q;
-    euc_end = euc + len;
-    /* Remove white space at tail of string */
-    while (euc_end >= euc + 2 &&
-	((euc_end[-1] == '\0' && euc_end[-2] == '\0') ||
-	 (euc_end[-1] == 0x21 && euc_end[-2] == 0x21)))
-	euc_end -= 2;
-    q = jis;
-    while (euc < euc_end)
-	*q++ = (*euc++ & 0x7f);
-    *q = '\0';
-    return (char *)jis;
-}
-
 size_t current_to_euc (in_buf,in_len,out_buf,out_len)
      char **in_buf, **out_buf;
      size_t *in_len,*out_len;
