@@ -1,0 +1,48 @@
+
+This is a test for how to use the eblibrary, and what functions
+I will need to wrap when writing the python wrapper.
+
+This can be compiled like this:
+
+`gcc -Wall myshorteb.c codeconv.c -o myshorteb -leb`
+
+It can then be run like this:
+
+`./myshorteb daijirin 犬`
+
+Running nm on the resulting binary gives me this:
+
+			.....
+0000000000402a05 t detect_conv_mode
+0000000000605540 b disable_iconv.3226
+0000000000605510 b dtor_idx.6499
+                 U eb_bind
+                 U eb_bind_appendix
+                 U eb_character_code
+                 U eb_error_message
+                 U eb_finalize_library
+                 U eb_hit_list
+                 U eb_initialize_appendix
+                 U eb_initialize_book
+                 U eb_initialize_hookset
+                 U eb_initialize_library
+                 U eb_is_appendix_bound
+                 U eb_is_bound
+                 U eb_read_heading
+                 U eb_read_text
+                 U eb_search_exactword
+                 U eb_seek_text
+                 U eb_set_appendix_subbook
+                 U eb_set_subbook
+                 U eb_subbook
+                 U eb_subbook_directory2
+                 U eb_subbook_list
+                 U eb_subbook_title2
+00000000006053e0 d euc_jp_names
+00000000006053c8 d euc_to_cur
+0000000000403870 t euc_to_current
+000000000040335d T euc_to_jis
+0000000000605520 b eucjp_code_name
+                 U exit@@GLIBC_2.2.5
+                 U fflush@@GLIBC_2.2.5
+			.....
